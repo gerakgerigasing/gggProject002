@@ -548,6 +548,12 @@ section {
     color: var(--grey-800);
 }
 
+.contact-meta {
+    margin: 8px 0 0;
+    font-size: 0.875rem;
+    color: var(--grey-600);
+}
+
 .contact-item a:hover {
     color: var(--grey-600);
 }
