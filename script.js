@@ -77,33 +77,30 @@ const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Get form data
+
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
-        
-        // Simple validation feedback
+        const subject = encodeURIComponent(`New message from ${data.name || 'website visitor'}`);
+        const body = encodeURIComponent(
+            `Name: ${data.name}\n` +
+            `Email: ${data.email}\n` +
+            `Service Interest: ${data.service || 'Not specified'}\n\n` +
+            `Message:\n${data.message}`
+        );
+        const mailtoLink = `mailto:gerakgeri.work@gmail.com?subject=${subject}&body=${body}`;
+
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
-        
-        // Simulate form submission
-        submitBtn.textContent = 'Sending...';
+        submitBtn.textContent = 'Opening email...';
         submitBtn.disabled = true;
-        
+
+        window.location.href = mailtoLink;
+
         setTimeout(() => {
-            submitBtn.textContent = 'Message Sent!';
-            submitBtn.style.backgroundColor = '#22c55e';
-            
-            // Reset form
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
             this.reset();
-            
-            // Reset button after 3 seconds
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.style.backgroundColor = '';
-                submitBtn.disabled = false;
-            }, 3000);
-        }, 1500);
+        }, 500);
     });
 }
 
