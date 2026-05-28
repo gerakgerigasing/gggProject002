@@ -1,155 +1,89 @@
-// ===== Mobile Navigation Toggle =====
-const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('active');
-    navLinks.classList.toggle('active');
-});
-
-// Close mobile menu when a link is clicked
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-    });
-});
-
-// ===== Smooth Scroll for Navigation Links =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offsetTop = target.offsetTop - 80; // Account for fixed navbar
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// ===== Navbar Background Change on Scroll =====
-const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
-    } else {
-        navbar.style.boxShadow = 'none';
-    }
-});
-
-// ===== Intersection Observer for Fade-in Animations =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Apply fade-in animation to sections
-document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(30px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(section);
-});
-
-// Don't animate the hero section (it should be visible immediately)
-const heroSection = document.querySelector('.hero');
-if (heroSection) {
-    heroSection.style.opacity = '1';
-    heroSection.style.transform = 'translateY(0)';
-}
-
-// ===== Form Submission Handler =====
+// ===== Contact Form Submission =====
 const contactForm = document.querySelector('.contact-form');
 
-// Google Apps Script URL for form submission
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz3SU4RO0pxkcGvIhv5hwtduwAPCKHLjMj1Ev1KN9y-JRU43RgMr8RCzu4MPgWNXI6fYw/exec";
-
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+
+    contactForm.addEventListener('submit', async function (e) {
+
         e.preventDefault();
 
-        const formData = new FormData(this);
-        const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            service: formData.get('service'),
-            message: formData.get('message')
+        const formData = {
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            service: document.getElementById('service').value,
+            message: document.getElementById('message').value.trim()
         };
 
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
+        try {
 
-        fetch(APPS_SCRIPT_URL, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(result => {
-            if (result.success) {
-                submitBtn.textContent = 'Message Sent!';
-                submitBtn.style.opacity = '0.7';
-                this.reset();
-                
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.style.opacity = '1';
-                    submitBtn.disabled = false;
-                }, 3000);
+            const response = await fetch(
+                'https://script.google.com/macros/s/AKfycbwVDB-izNjBECzmJNL3WCfK6DV7PQdUc54KzCNvHd5XHC1EfKBKVEFVNYbQg-qHCpqW/exec',
+                {
+                    method: 'POST',
+                    body: JSON.stringify(formData)
+                }
+            );
+
+            const result = await response.json();
+
+            if (result.result === 'success') {
+                alert('Message sent successfully!');
+                contactForm.reset();
             } else {
-                throw new Error(result.message);
+                alert('Something went wrong.');
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            submitBtn.textContent = 'Error - Try Again';
-            submitBtn.style.opacity = '0.7';
-            
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.style.opacity = '1';
-                submitBtn.disabled = false;
-            }, 3000);
-        });
+
+        } catch (error) {
+
+            console.error(error);
+            alert('Error sending message.');
+
+        }
+
     });
+
+}// ===== Contact Form Submission =====
+const contactForm = document.querySelector('.contact-form');
+
+if (contactForm) {
+
+    contactForm.addEventListener('submit', async function (e) {
+
+        e.preventDefault();
+
+        const formData = {
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            service: document.getElementById('service').value,
+            message: document.getElementById('message').value.trim()
+        };
+
+        try {
+
+            const response = await fetch(
+                'PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE',
+                {
+                    method: 'POST',
+                    body: JSON.stringify(formData)
+                }
+            );
+
+            const result = await response.json();
+
+            if (result.result === 'success') {
+                alert('Message sent successfully!');
+                contactForm.reset();
+            } else {
+                alert('Something went wrong.');
+            }
+
+        } catch (error) {
+
+            console.error(error);
+            alert('Error sending message.');
+
+        }
+
+    });
+
 }
-
-// ===== Active Navigation Link Highlighting =====
-const sections = document.querySelectorAll('section[id]');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-        
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
