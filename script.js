@@ -74,33 +74,60 @@ if (heroSection) {
 // ===== Form Submission Handler =====
 const contactForm = document.querySelector('.contact-form');
 
+// Google Apps Script URL for form submission
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz3SU4RO0pxkcGvIhv5hwtduwAPCKHLjMj1Ev1KN9y-JRU43RgMr8RCzu4MPgWNXI6fYw/exec";
+
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
         const formData = new FormData(this);
-        const data = Object.fromEntries(formData);
-        const subject = encodeURIComponent(`New message from ${data.name || 'website visitor'}`);
-        const body = encodeURIComponent(
-            `Name: ${data.name}\n` +
-            `Email: ${data.email}\n` +
-            `Service Interest: ${data.service || 'Not specified'}\n\n` +
-            `Message:\n${data.message}`
-        );
-        const mailtoLink = `mailto:gerakgeri.work@gmail.com?subject=${subject}&body=${body}`;
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            service: formData.get('service'),
+            message: formData.get('message')
+        };
 
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Opening email...';
+        submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
 
-        window.location.href = mailtoLink;
-
-        setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            this.reset();
-        }, 500);
+        fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                submitBtn.textContent = 'Message Sent!';
+                submitBtn.style.backgroundColor = '#22c55e';
+                this.reset();
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.backgroundColor = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            } else {
+                throw new Error(result.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            submitBtn.textContent = 'Error - Try Again';
+            submitBtn.style.backgroundColor = '#ef4444';
+            
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.backgroundColor = '';
+                submitBtn.disabled = false;
+            }, 3000);
+        });
     });
 }
 
