@@ -1507,7 +1507,12 @@ section {
         gap: 60px;
 
     }
-
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr); /* Drops to 2 items per row on tablets */
+}
+    .founders-row .team-card {
+        width: calc(50% - 20px);
+}
 }
 
 
@@ -1669,7 +1674,18 @@ section {
         gap: 48px;
 
     }
-
+    .founders-row {
+    flex-direction: column;
+        align-items: center;
+        gap: 32px;
+}
+    .founders-row .team-card {
+        width: 100%;
+}
+    .team-grid {
+    grid-template-columns: 1fr; /* Stack into a single neat column on phones */
+    gap: 40px;
+}
 }
 
 
