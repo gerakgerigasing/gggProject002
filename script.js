@@ -16,7 +16,7 @@ if (contactForm) {
             // 2. Send the request to your Google Web App URL
             // WARNING: Replace the URL below with your fresh /exec URL if you redeployed!
             await fetch(
-                'https://script.google.com/macros/s/AKfycbxpCHMTb9HvXFY6iwj3fMduZLvDVi_6_0zz8D0cUp09/exec', 
+                'https://script.google.com/macros/library/d/1UZUQx5nHnOThRGjimll-BjpyZsU70HSfzJpe6llzDNgcKBeLAHoNzKSX/8/exec', 
                 {
                     method: 'POST',
                     mode: 'no-cors', // Bypasses browser security blocks
