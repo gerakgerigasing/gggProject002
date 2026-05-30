@@ -13,13 +13,12 @@ if (contactForm) {
         formData.append('message', document.getElementById('message').value.trim());
 
         try {
-            // 2. Send the request to your Google Web App URL
-            // WARNING: Replace the URL below with your fresh /exec URL if you redeployed!
+            // 2. Send the request directly to your validated live Web App URL
             await fetch(
-                'https://script.google.com/macros/library/d/1UZUQx5nHnOThRGjimll-BjpyZsU70HSfzJpe6llzDNgcKBeLAHoNzKSX/8/exec', 
+                'https://script.google.com/macros/s/AKfycbzIVmco44LSqwFO5LGqbIthPVOxD3JB06xhRUmdvOq6yFdbdQfaAo5AZDwuvFEB7_JU2g/exec', 
                 {
                     method: 'POST',
-                    mode: 'no-cors', // Bypasses browser security blocks
+                    mode: 'no-cors', // Bypasses browser security blocks smoothly
                     body: formData,
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
