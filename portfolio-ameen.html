@@ -3,162 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ameen Mustaqim | Gerak Geri Gasing Portfolio</title>
+    <title>Afif Qudanial - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Standalone Fallback Styles to guarantee it loads perfectly */
-        :root {
-            --bg-color: #ffffff;
-            --card-bg: #f9f9f9;
-            --border-color: #1a1a1a;
-            --accent-color: #e63946;
-            --text-main: #1a1a1a;
-            --text-muted: #666666;
+        /* ===== Creative Portfolio Split Layout Extension ===== */
+        .portfolio-page {
+            padding-top: 120px;
+            background-color: var(--grey-50); /* FIX: Set to match the warm cream palette background */
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Navbar Layout */
-        .navbar {
-            background: var(--bg-color);
-            border-bottom: 3px solid var(--border-color);
-            padding: 20px 0;
-        }
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-weight: 700;
-            font-size: 1.3rem;
-            text-decoration: none;
-            color: var(--text-main);
-            text-transform: uppercase;
-        }
-        .nav-links {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        /* Profile Layout Details */
-        .portfolio-detail-hero {
-            padding: 80px 0;
-            background-color: var(--card-bg);
-            border-bottom: 3px solid var(--border-color);
-        }
-        .portfolio-back-btn {
-            display: inline-flex;
-            align-items: center;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 700;
-            margin-bottom: 32px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .profile-header-grid {
+        .split-portfolio-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 64px;
+            grid-template-columns: 400px 1fr; /* Fixed profile sidebar, expansive work gallery */
+            gap: 80px;
             align-items: start;
         }
-        .profile-frame {
-            border: 4px solid var(--border-color);
-            box-shadow: 8px 8px 0px var(--accent-color);
-            background: #eaeaea;
-            aspect-ratio: 1 / 1;
+
+        /* Sticky Left Column Profile Frame */
+        .portfolio-sidebar {
+            position: sticky;
+            top: 120px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            flex-direction: column;
         }
+
+        .profile-frame {
+            aspect-ratio: 3 / 4;
+            background-color: var(--grey-100);
+            border: 1px solid var(--grey-300); /* FIX: Added editorial border line styling */
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
         .profile-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .profile-meta-list {
-            margin-top: 24px;
-            padding: 20px;
-            background: white;
-            border: 3px solid var(--border-color);
-            list-style: none;
-        }
-        .profile-meta-list li {
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-        }
-        .profile-meta-list li strong {
-            text-transform: uppercase;
-            color: var(--accent-color);
+
+        .profile-meta-title h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--grey-800);
+            margin-bottom: 4px;
         }
 
-        .section-tag {
+        .profile-meta-title .role-tag {
+            font-size: 0.8125rem;
             text-transform: uppercase;
-            font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            color: var(--ruby-vibrant); /* FIX: Uses vibrant ruby red variable */
+            font-weight: 600;
+        }
+
+        /* Right Column Scrollable Content */
+        .portfolio-content-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .about-statement .lead {
+            font-size: 1.35rem;
+            font-weight: 300;
+            color: var(--grey-800);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .about-statement p {
+            color: var(--grey-600);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Core Skill Tags Display */
+        .skills-creative-suite {
+            margin-top: 32px;
+        }
+
+        .skills-headline {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--grey-400);
+            font-weight: 600;
+            margin-bottom: 16px;
             display: block;
         }
 
-        .showcase-section {
-            padding: 80px 0;
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        .showcase-grid {
+
+        .skill-badge {
+            background-color: var(--white);
+            border: 1px solid var(--grey-300); /* FIX: Updated to match palette borders */
+            color: var(--grey-800);
+            padding: 8px 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .skill-badge:hover {
+            background-color: var(--ruby-vibrant); /* FIX: Hover highlights with editorial ruby red */
+            color: var(--white);
+            border-color: var(--ruby-vibrant);
+        }
+
+        /* Creative Editorial Work Gallery Grid */
+        .showcase-header h2 {
+            font-size: 1.75rem;
+            margin-bottom: 32px;
+            font-weight: 400;
+            color: var(--grey-800);
+        }
+
+        .creative-work-gallery {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-top: 32px;
+            gap: 40px 32px; /* FIX: Restructured standard gap spacing */
         }
-        .showcase-card {
-            border: 3px solid var(--border-color);
-            background: var(--card-bg);
+
+        .work-item {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none; /* FIX: Clean anchor tag reset wrapper */
+            color: inherit;
         }
-        .showcase-img {
-            border-bottom: 3px solid var(--border-color);
-            background: #eaeaea;
+
+        /* Alternating asymmetric layout pattern for desktop screens */
+        @media (min-width: 1025px) {
+            .work-item:nth-child(odd) {
+                transform: translateY(0);
+            }
+            .work-item:nth-child(even) {
+                transform: translateY(40px);
+            }
+            .gallery-wrapper {
+                padding-bottom: 60px;
+            }
+        }
+
+        .work-display-box {
             aspect-ratio: 16 / 10;
+            background-color: var(--white);
+            border: 1px solid var(--grey-300); /* FIX: Matched to palette borders */
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
         }
-        .showcase-img img {
+
+        .work-display-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-        .showcase-desc {
-            padding: 24px;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        @media (max-width: 768px) {
-            .profile-header-grid, .showcase-grid {
+        .work-item:hover .work-display-box {
+            border-color: var(--ruby-vibrant); /* FIX: Border flashes red on card hover */
+        }
+
+        .work-item:hover .work-display-box img {
+            transform: scale(1.03);
+        }
+
+        /* Decorative Play Overlay for Video Work */
+        .play-indicator {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: var(--transition);
+            z-index: 2;
+            border: 1px solid var(--grey-300);
+        }
+
+        .work-item:hover .play-indicator {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .play-indicator::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 6px 0 6px 10px;
+            border-color: transparent transparent transparent var(--black);
+            margin-left: 3px;
+        }
+
+        .work-details {
+            padding-top: 16px;
+        }
+
+        .work-details .work-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--grey-400);
+            font-weight: 600;
+        }
+
+        .work-details h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--grey-800);
+            margin-top: 4px;
+            transition: color var(--transition);
+        }
+
+        .work-item:hover .work-details h3 {
+            color: var(--ruby-vibrant); /* FIX: Project titles turn red on item hover */
+        }
+
+        /* ===== Responsive Media Adapters ===== */
+        @media (max-width: 1024px) {
+            .split-portfolio-grid {
                 grid-template-columns: 1fr;
-                gap: 32px;
+                gap: 60px;
+            }
+
+            .portfolio-sidebar {
+                position: relative;
+                top: 0;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile-frame {
+                max-width: 320px;
+                width: 100%;
+            }
+            
+            .gallery-wrapper {
+                padding-bottom: 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .creative-work-gallery {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
         }
     </style>
@@ -168,86 +268,101 @@
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">Gerak Geri Gasing</a>
-            <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="index.html#portfolio">Portfolio</a></li>
-                <li><a href="index.html#team">Our Team</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
+            <div class="nav-links">
+                <a href="index.html#team">← Back To Team</a>
+            </div>
         </div>
     </nav>
 
-    <header class="portfolio-detail-hero">
+    <section class="portfolio-page">
         <div class="container">
-            <a href="index.html#team" class="portfolio-back-btn">← Back to Team</a>
-            
-            <div class="profile-header-grid">
-                <div class="profile-sidebar">
+            <div class="split-portfolio-grid">
+                
+                <aside class="portfolio-sidebar">
                     <div class="profile-frame">
                         <img src="image/ameen.jpg" alt="Ameen Mustaqim">
                     </div>
-                    <ul class="profile-meta-list">
-                        <li><strong>Role:</strong> Stage Direction</li>
-                        <li><strong>Specialty:</strong> Production Management</li>
-                        <li><strong>Location:</strong> Kuala Lumpur, MY</li>
-                    </ul>
-                </div>
-                
-                <div class="profile-biography">
-                    <span class="section-tag">The Creatives</span>
-                    <h1 style="font-size: 3rem; font-weight: 700; margin: 8px 0 16px; color: var(--grey-800);">Ameen Mustaqim</h1>
-                    <p class="lead" style="font-size: 1.25rem; line-height: 1.6; color: var(--grey-600); margin-bottom: 24px;">
-                        Driving the core momentum behind stage coordination and multi-medium performance layouts. 
-                    </p>
-                    <p style="color: var(--grey-600); line-height: 1.7; margin-bottom: 16px;">
-                        Ameen specializes in translating complex visual concepts into structured, breathtaking real-world stage architectures. By merging rigorous production tracking methods with sharp spatial awareness, he handles both technical logistics and artistic direction seamlessly.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </header>
+                    <div class="profile-meta-title">
+                        <h1>Ameen Mustaqim</h1>
+                        <span class="role-tag">Head of Stage Direction & Production Management</span>
+                    </div>
+                </aside>
 
-    <section class="showcase-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Production Records</span>
-                <h2>Selected Credits</h2>
-            </div>
+                <main class="portfolio-content-flow">
+                    
+                    <article class="about-statement">
+                        <p class="lead">Bringing concepts to life through clean motion graphics, striking typography, and professional video production framing.</p>
+                        <p>With an exceptional eye for detail, composition, and kinetic pacing, Afif orchestrates creative visuals that translate narrative ideas into premium digital experiences. Specializing across production pipelines, his skillset captures energy and translates it beautifully onto screen real estate.</p>
+                        
+                        <div class="skills-creative-suite">
+                            <span class="skills-headline">Core Technical Expertise</span>
+                            <div class="tag-cloud">
+                                <div class="skill-badge">Video Production</div>
+                                <div class="skill-badge">Motion Graphics</div>
+                                <div class="skill-badge">Typography</div>
+                                <div class="skill-badge">Visual Design</div>
+                                <div class="skill-badge">Cinematography</div>
+                                <div class="skill-badge">Post-Production Editing</div>
+                            </div>
+                        </div>
+                    </article>
 
-            <div class="showcase-grid">
-                <article class="showcase-card">
-                    <div class="showcase-img">
-                        <img src="image/Project1.jpg" alt="Prosamania Verusenja">
-                    </div>
-                    <div class="showcase-desc">
-                        <span>Stage Production</span>
-                        <h4>Prosamania "Verusenja"</h4>
-                        <p>Served as a key performer and technical production coordinator, blending motion cues with classical dramatic pacing.</p>
-                    </div>
-                </article>
+                    <div class="gallery-wrapper">
+                        <section class="showcase-header">
+                            <h2>Featured Showreel & Projects</h2>
+                        </section>
+                        
+                        <div class="creative-work-gallery">
+                            <!-- FIX: Clickable Anchor Links wrapped around image paths -->
+                            <a href="image/portfolio/project1.jpg" target="_blank" class="work-item">
+                                <div class="work-display-box">
+                                    <div class="play-indicator"></div>
+                                    <img src="image/portfolio/project1.jpg" alt="Video Direction Showcase">
+                                </div>
+                                <div class="work-details">
+                                    <span class="work-category">Video Production</span>
+                                    <h3>Cinematic Narrative Reel</h3>
+                                </div>
+                            </a>
 
-                <article class="showcase-card">
-                    <div class="showcase-img">
-                        <img src="image/Project3.jpg" alt="Malam Jahanam">
+                            <a href="image/portfolio/project2.jpg" target="_blank" class="work-item">
+                                <div class="work-display-box">
+                                    <div class="play-indicator"></div>
+                                    <img src="image/portfolio/project2.jpg" alt="Motion Graphics Design">
+                                </div>
+                                <div class="work-details">
+                                    <span class="work-category">Motion Graphics</span>
+                                    <h3>Kinetic Typography Display</h3>
+                                </div>
+                            </a>
+
+                            <a href="image/portfolio/project3.jpg" target="_blank" class="work-item">
+                                <div class="work-display-box">
+                                    <img src="image/portfolio/project3.jpg" alt="Visual Asset Compilation">
+                                </div>
+                                <div class="work-details">
+                                    <span class="work-category">Visual Design</span>
+                                    <h3>Brand Asset Campaign Layout</h3>
+                                </div>
+                            </a>
+
+                            <a href="image/portfolio/project4.jpg" target="_blank" class="work-item">
+                                <div class="work-display-box">
+                                    <div class="play-indicator"></div>
+                                    <img src="image/portfolio/project4.jpg" alt="Post-Production Showcase">
+                                </div>
+                                <div class="work-details">
+                                    <span class="work-category">Post-Production</span>
+                                    <h3>Commercial Video Edit</h3>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="showcase-desc">
-                        <span>Stage Direction</span>
-                        <h4>PETA "Malam Jahanam"</h4>
-                        <p>Lead project director overseeing structural set builds, staging geometry, and final cue arrays for performance evaluation.</p>
-                    </div>
-                </article>
+
+                </main>
             </div>
         </div>
     </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2025 Gerak Geri Gasing. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
 
 </body>
 </html>
