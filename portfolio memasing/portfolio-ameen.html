@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Ameen - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ===== Creative Portfolio Split Layout Extension ===== */
+        .portfolio-page {
+            padding-top: 120px;
+            background-color: var(--white);
+        }
+
+        .split-portfolio-grid {
+            display: grid;
+            grid-template-columns: 400px 1fr; /* Fixed profile sidebar, expansive work gallery */
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* Sticky Left Column Profile Frame */
+        .portfolio-sidebar {
+            position: sticky;
+            top: 120px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-frame {
+            aspect-ratio: 3 / 4;
+            background-color: var(--grey-100);
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-meta-title h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--grey-900);
+            margin-bottom: 4px;
+        }
+
+        .profile-meta-title .role-tag {
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--grey-500);
+            font-weight: 600;
+        }
+
+        /* Right Column Scrollable Content */
+        .portfolio-content-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .about-statement .lead {
+            font-size: 1.35rem;
+            font-weight: 300;
+            color: var(--grey-800);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .about-statement p {
+            color: var(--grey-600);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Core Skill Tags Display */
+        .skills-creative-suite {
+            margin-top: 32px;
+        }
+
+        .skills-headline {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--grey-400);
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            background-color: var(--grey-50);
+            border: 1px solid var(--grey-200);
+            color: var(--grey-800);
+            padding: 8px 16px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .skill-badge:hover {
+            background-color: var(--grey-900);
+            color: var(--white);
+            border-color: var(--grey-900);
+        }
+
+        /* Creative Editorial Work Gallery Grid */
+        .showcase-header h2 {
+            font-size: 1.75rem;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .creative-work-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .work-item {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        /* Alternating asymmetric layout pattern for creative design rhythm */
+        .work-item:nth-child(odd) {
+            transform: translateY(0);
+        }
+        .work-item:nth-child(even) {
+            transform: translateY(40px);
+        }
+
+        .work-display-box {
+            aspect-ratio: 16 / 10;
+            background-color: var(--grey-50);
+            border: 1px solid var(--grey-200);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .work-display-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .work-item:hover .work-display-box img {
+            transform: scale(1.03);
+        }
+
+        /* Decorative Play Overlay for Video Work */
+        .play-indicator {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .work-item:hover .play-indicator {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .play-indicator::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 6px 0 6px 10px;
+            border-color: transparent transparent transparent var(--grey-900);
+            margin-left: 3px;
+        }
+
+        .work-details {
+            padding-top: 16px;
+        }
+
+        .work-details .work-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--grey-400);
+            font-weight: 600;
+        }
+
+        .work-details h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--grey-900);
+            margin-top: 4px;
+        }
+
+        /* Compensation space below the gallery due to alternating transforms */
+        .gallery-wrapper {
+            padding-bottom: 60px;
+        }
+
+        /* ===== Responsive Media Adapters ===== */
+        @media (max-width: 1024px) {
+            .split-portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .portfolio-sidebar {
+                position: relative;
+                top: 0;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile-frame {
+                max-width: 320px;
+                width: 100%;
+            }
+
+            .work-item:nth-child(even) {
+                transform: translateY(0);
+            }
+            
+            .gallery-wrapper {
+                padding-bottom: 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .creative-work-gallery {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Gerak Geri Gasing</a>
+            <div class="nav-links">
+                <a href="index.html#team">← Back To Team</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="portfolio-page">
+        <div class="container">
+            <div class="split-portfolio-grid">
+                
+                <aside class="portfolio-sidebar">
+                    <div class="profile-frame">
+                        <img src="image/team-hod1.jpg" alt="Muhammad Ameen">
+                    </div>
+                    <div class="profile-meta-title">
+                        <h1>Muhammad Ameen</h1>
+                        <span class="role-tag">Head of Production / Visual Designer</span>
+                    </div>
+                </aside>
+
+                <main class="portfolio-content-flow">
+                    
+                    <article class="about-statement">
+                        <p class="lead">Bringing concepts to life through clean motion graphics, striking typography, and professional video production framing.</p>
+                        <p>With an exceptional eye for detail, composition, and kinetic pacing, Ameen orchestrates creative visuals that translate narrative ideas into premium digital experiences. Specializing across production pipelines, his skillset captures energy and translates it beautifully onto screen real estate.</p>
+                        
+                        <div class="skills-creative-suite">
+                            <span class="skills-headline">Core Technical Expertise</span>
+                            <div class="tag-cloud">
+                                <div class="skill-badge">Video Production</div>
+                                <div class="skill-badge">Motion Graphics</div>
+                                <div class="skill-badge">Typography</div>
+                                <div class="skill-badge">Visual Design</div>
+                                <div class="skill-badge">Cinematography</div>
+                                <div class="skill-badge">Post-Production Editing</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="gallery-wrapper">
+                        <section class="showcase-header">
+                            <h2>Featured Showreel & Projects</h2>
+                        </section>
+                        
+                        <div class="creative-work-gallery">
+                            <div class="work-item">
+                                <div class="work-display-box">
+                                    <div class="play-indicator"></div>
+                                    <img src="image/portfolio/project1.jpg" alt="Video Direction Showcase">
+                                </div>
+                                <div class="work-details">
+                                    <span class="work-category">Video Production</span>
+                                    <h3>Cinematic Narrative Reel</h3>
+                                </div>
+                            </div>
+
+                            <div class="work-item">
+                                <div class="work-display-box">
+                                    <div class="play-indicator"></div>
+                                    <img src="image/portfolio/project2.jpg" alt="Motion Graphics Design">
+                                </div>
+                                <div class="work-details">
+                                    <span class="work-category">Motion Graphics</span>
+                                    <h3>Kinetic Typography Display</h3>
+                                </div>
+                            </div>
+
+                            <div class="work-item">
+                                <div class="work-display-box">
+                                    <img src="image/portfolio/project3.jpg" alt="Visual Asset Compilation">
+                                </div>
+                                <div class="work-details">
+                                    <span class="work-category">Visual Design</span>
+                                    <h3>Brand Asset Campaign Layout</h3>
+                                </div>
+                            </div>
+
+                            <div class="work-item">
+                                <div class="work-display-box">
+                                    <div class="play-indicator"></div>
+                                    <img src="image/portfolio/project4.jpg" alt="Post-Production Showcase">
+                                </div>
+                                <div class="work-details">
+                                    <span class="work-category">Post-Production</span>
+                                    <h3>Commercial Video Edit</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
