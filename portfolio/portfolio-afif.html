@@ -9,7 +9,7 @@
         /* ===== Creative Portfolio Split Layout Extension ===== */
         .portfolio-page {
             padding-top: 120px;
-            background-color: var(--white);
+            background-color: var(--grey-50); /* FIX: Set to match the warm cream palette background */
         }
 
         .split-portfolio-grid {
@@ -30,6 +30,7 @@
         .profile-frame {
             aspect-ratio: 3 / 4;
             background-color: var(--grey-100);
+            border: 1px solid var(--grey-300); /* FIX: Added editorial border line styling */
             overflow: hidden;
             margin-bottom: 24px;
         }
@@ -43,7 +44,7 @@
         .profile-meta-title h1 {
             font-size: 2rem;
             font-weight: 500;
-            color: var(--grey-900);
+            color: var(--grey-800);
             margin-bottom: 4px;
         }
 
@@ -51,7 +52,7 @@
             font-size: 0.8125rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--grey-500);
+            color: var(--ruby-vibrant); /* FIX: Uses vibrant ruby red variable */
             font-weight: 600;
         }
 
@@ -98,8 +99,8 @@
         }
 
         .skill-badge {
-            background-color: var(--grey-50);
-            border: 1px solid var(--grey-200);
+            background-color: var(--white);
+            border: 1px solid var(--grey-300); /* FIX: Updated to match palette borders */
             color: var(--grey-800);
             padding: 8px 16px;
             font-size: 0.8125rem;
@@ -108,9 +109,9 @@
         }
 
         .skill-badge:hover {
-            background-color: var(--grey-900);
+            background-color: var(--ruby-vibrant); /* FIX: Hover highlights with editorial ruby red */
             color: var(--white);
-            border-color: var(--grey-900);
+            border-color: var(--ruby-vibrant);
         }
 
         /* Creative Editorial Work Gallery Grid */
@@ -118,32 +119,39 @@
             font-size: 1.75rem;
             margin-bottom: 32px;
             font-weight: 400;
+            color: var(--grey-800);
         }
 
         .creative-work-gallery {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
+            gap: 40px 32px; /* FIX: Restructured standard gap spacing */
         }
 
         .work-item {
             display: flex;
             flex-direction: column;
-            cursor: pointer;
+            text-decoration: none; /* FIX: Clean anchor tag reset wrapper */
+            color: inherit;
         }
 
-        /* Alternating asymmetric layout pattern for creative design rhythm */
-        .work-item:nth-child(odd) {
-            transform: translateY(0);
-        }
-        .work-item:nth-child(even) {
-            transform: translateY(40px);
+        /* Alternating asymmetric layout pattern for desktop screens */
+        @media (min-width: 1025px) {
+            .work-item:nth-child(odd) {
+                transform: translateY(0);
+            }
+            .work-item:nth-child(even) {
+                transform: translateY(40px);
+            }
+            .gallery-wrapper {
+                padding-bottom: 60px;
+            }
         }
 
         .work-display-box {
             aspect-ratio: 16 / 10;
-            background-color: var(--grey-50);
-            border: 1px solid var(--grey-200);
+            background-color: var(--white);
+            border: 1px solid var(--grey-300); /* FIX: Matched to palette borders */
             overflow: hidden;
             position: relative;
             display: flex;
@@ -159,6 +167,10 @@
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
+        .work-item:hover .work-display-box {
+            border-color: var(--ruby-vibrant); /* FIX: Border flashes red on card hover */
+        }
+
         .work-item:hover .work-display-box img {
             transform: scale(1.03);
         }
@@ -168,7 +180,7 @@
             position: absolute;
             width: 50px;
             height: 50px;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -177,6 +189,7 @@
             transform: scale(0.8);
             transition: var(--transition);
             z-index: 2;
+            border: 1px solid var(--grey-300);
         }
 
         .work-item:hover .play-indicator {
@@ -190,7 +203,7 @@
             height: 0;
             border-style: solid;
             border-width: 6px 0 6px 10px;
-            border-color: transparent transparent transparent var(--grey-900);
+            border-color: transparent transparent transparent var(--black);
             margin-left: 3px;
         }
 
@@ -209,13 +222,13 @@
         .work-details h3 {
             font-size: 1rem;
             font-weight: 500;
-            color: var(--grey-900);
+            color: var(--grey-800);
             margin-top: 4px;
+            transition: color var(--transition);
         }
 
-        /* Compensation space below the gallery due to alternating transforms */
-        .gallery-wrapper {
-            padding-bottom: 60px;
+        .work-item:hover .work-details h3 {
+            color: var(--ruby-vibrant); /* FIX: Project titles turn red on item hover */
         }
 
         /* ===== Responsive Media Adapters ===== */
@@ -235,10 +248,6 @@
             .profile-frame {
                 max-width: 320px;
                 width: 100%;
-            }
-
-            .work-item:nth-child(even) {
-                transform: translateY(0);
             }
             
             .gallery-wrapper {
@@ -283,7 +292,7 @@
                     
                     <article class="about-statement">
                         <p class="lead">Bringing concepts to life through clean motion graphics, striking typography, and professional video production framing.</p>
-                        <p>With an exceptional eye for detail, composition, and kinetic pacing, Ameen orchestrates creative visuals that translate narrative ideas into premium digital experiences. Specializing across production pipelines, his skillset captures energy and translates it beautifully onto screen real estate.</p>
+                        <p>With an exceptional eye for detail, composition, and kinetic pacing, Afif orchestrates creative visuals that translate narrative ideas into premium digital experiences. Specializing across production pipelines, his skillset captures energy and translates it beautifully onto screen real estate.</p>
                         
                         <div class="skills-creative-suite">
                             <span class="skills-headline">Core Technical Expertise</span>
@@ -304,7 +313,8 @@
                         </section>
                         
                         <div class="creative-work-gallery">
-                            <div class="work-item">
+                            <!-- FIX: Clickable Anchor Links wrapped around image paths -->
+                            <a href="image/portfolio/project1.jpg" target="_blank" class="work-item">
                                 <div class="work-display-box">
                                     <div class="play-indicator"></div>
                                     <img src="image/portfolio/project1.jpg" alt="Video Direction Showcase">
@@ -313,9 +323,9 @@
                                     <span class="work-category">Video Production</span>
                                     <h3>Cinematic Narrative Reel</h3>
                                 </div>
-                            </div>
+                            </a>
 
-                            <div class="work-item">
+                            <a href="image/portfolio/project2.jpg" target="_blank" class="work-item">
                                 <div class="work-display-box">
                                     <div class="play-indicator"></div>
                                     <img src="image/portfolio/project2.jpg" alt="Motion Graphics Design">
@@ -324,9 +334,9 @@
                                     <span class="work-category">Motion Graphics</span>
                                     <h3>Kinetic Typography Display</h3>
                                 </div>
-                            </div>
+                            </a>
 
-                            <div class="work-item">
+                            <a href="image/portfolio/project3.jpg" target="_blank" class="work-item">
                                 <div class="work-display-box">
                                     <img src="image/portfolio/project3.jpg" alt="Visual Asset Compilation">
                                 </div>
@@ -334,9 +344,9 @@
                                     <span class="work-category">Visual Design</span>
                                     <h3>Brand Asset Campaign Layout</h3>
                                 </div>
-                            </div>
+                            </a>
 
-                            <div class="work-item">
+                            <a href="image/portfolio/project4.jpg" target="_blank" class="work-item">
                                 <div class="work-display-box">
                                     <div class="play-indicator"></div>
                                     <img src="image/portfolio/project4.jpg" alt="Post-Production Showcase">
@@ -345,7 +355,7 @@
                                     <span class="work-category">Post-Production</span>
                                     <h3>Commercial Video Edit</h3>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
 
