@@ -1,29 +1,29 @@
 
 
-/* ===== CSS Variables (Ruby Leaf Theme) ===== */
+/* ===== CSS Variables (Bold Ruby Brutalist Theme) ===== */
 :root {
-    /* Core Brand Accents */
-    --ruby-deep: #5A1827;      /* Rich, deep luxurious ruby for primary darks/headings */
-    --ruby-vibrant: #8B263E;   /* Elevated ruby accent for hovers and highlights */
-    --leaf-muted: #4A5343;     /* Sophisticated olive/sage leaf undertone for tags/secondary metadata */
-    
-    /* Neutrals & Backgrounds (Replaces old clinical grays with warm leaf-ash undertones) */
+    /* Main Bold Accents */
+    --ruby-vibrant: #E61E43;   /* The stark, high-saturation bright red from your reference */
+    --ruby-deep: #9B0F26;      /* Rich crimson accent for structural depth */
+    --leaf-stark: #2A3B22;     /* Dark contrasting forest olive for sharp secondary elements */
+
+    /* High-Contrast Panels & Fills (Replaces your old grays with the reference's bold tones) */
     --white: #FFFFFF;
-    --grey-50: #FAF8F8;        /* Soft milk white for clean canvas backgrounds */
-    --grey-100: #F3ECEF;       /* Warm tinted mist for subtle structural panels */
-    --grey-200: #E6D9DC;       /* Soft border tint matching the ruby undertones */
-    --grey-300: #D2BFC3;       /* Muted gray-rose divider line tint */
-    --grey-400: #A88F94;       /* Balanced gray for secondary structural labels */
-    --grey-500: #7E6C70;       /* Earthy leaf-stem tint for tags and subtitles */
-    --grey-600: #5C4D50;       /* Muted charcoal-rose for readable body texts */
-    --grey-700: #423537;       /* Dark charcoal for high-contrast secondary elements */
-    --grey-800: #2C1A1D;       /* Deep earthy wine tone for primary descriptive prose */
-    --grey-900: #1C0B0E;       /* Ultimate dark rich velvet ruby-black for primary headers */
-    --black: #0D0305;          /* Near absolute black with a hint of warm wine */
+    --grey-50: #F9F6F6;        /* Clean crisp light canvas tint */
+    --grey-100: #F3EBEF;       /* Visible block fill tint */
+    --grey-200: #171717;       /* CHANGED TO DARK: For sharp, bold structural border lines */
+    --grey-300: #262626;       /* Mid-tone structural line dividers */
+    --grey-400: #737373;       /* Balanced secondary gray */
+    --grey-500: #E61E43;       /* REDIRECTED TO RED: Small tags/subtitles will now pop out in bright red! */
+    --grey-600: #262626;       /* High-contrast charcoal text for readability */
+    --grey-700: #171717;       /* Dark slate accents */
+    --grey-800: #0A0A0A;       /* Deep stark black for bold descriptions */
+    --grey-900: #E61E43;       /* REDIRECTED TO RED: Main Section headers now strike out in bold ruby red! */
+    --black: #000000;          /* Absolute pure black */
     
-    /* Global Settings inherited by your layout */
+    /* Layout Variables */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
    
@@ -33,7 +33,28 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 }
+/* Brutalist Border Tweaks matching your reference */
+.team-card {
+    border: 1px solid var(--grey-200); /* Adds a clean, thin dark frame around cards */
+    padding: 12px;
+    background-color: var(--white);
+    transition: var(--transition);
+}
 
+.team-card:hover {
+    border-color: var(--ruby-vibrant); /* Frame flashes bright red on hover! */
+    transform: translateY(-4px);
+}
+
+.btn-primary {
+    background-color: var(--ruby-vibrant) !important; /* Forces buttons to take on the loud red signature */
+    color: var(--white) !important;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: var(--black) !important;
+}
 
 
 /* ===== Reset & Base ===== */
