@@ -1038,7 +1038,7 @@ section {
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 4 columns for HODs on desktop */
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for HODs on desktop */
     gap: 32px;
 }
 
